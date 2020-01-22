@@ -51,6 +51,9 @@
 \usepackage[
 %style=gost-authoryear-min,
 style=gost-authoryear,
+mergedate=maximum, %перемещает дату в начал
+movenames=false, % не перемещает имена авторов после /
+maxbibnames=4, % максимальное число авторово
 %style=gost-numeric, 
 %style=gost-footnote-min,
 %style=authoryear,
@@ -77,6 +80,21 @@ defernumbers=true
 \renewcommand*{\addcolondelim}{\addcolon\space}
 \renewcommand*{\addsemicolondelim}{\addsemicolon\space}
 
+%%Меняем [] на ()%%%%%%%%%%
+\renewcommand{\mkbibbrackets}[1]{\mkbibparens{#1}}
+
+%Если нет langid, то считается английский
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=langid, fieldvalue={english}]
+    }
+  }
+}
+
+
+%%% Русские источники в начале
+%%% Русские источники в начале
 \DeclareSourcemap{
 \maps[datatype=bibtex]{
 \map{
@@ -88,25 +106,6 @@ defernumbers=true
 \step[fieldset=presort, fieldvalue={z}]
 }
 }
-} %%% Сначала русские источники, потом - иностранные
-
-
-%\DeclareSourcemap{ %language-> langid
-%  \maps{
-%    \map{
-%      \step[fieldsource=language, fieldset=langid, origfieldval]
-%      \step[fieldset=language, null]  }
-%    \map{
-%      \step[fieldsource=language, fieldset=keywords, origfieldval, final]
-%      \step[fieldset=language, null]  }   
-%      }}
-      
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldset=langid, fieldvalue={english}]
-    }
-  }
 }
 
 \AtEveryBibitem{%

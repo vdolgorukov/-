@@ -1,0 +1,133 @@
+%!TEX TS-program = xelatex
+\documentclass[a4paper]{article} %XeLateX
+
+%подключаем кириллицу
+
+\usepackage[utf8]{inputenc} 
+%\usepackage[cp1251]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+
+%%% Работа с русским языком
+\usepackage[english, russian]{babel}   %% загружает пакет многоязыковой вёрстки
+\usepackage{fontspec}      %% подготавливает загрузку шрифтов Open Type, True Type и др.
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
+
+
+\usepackage[14pt]{extsizes} % 14 шрифт
+\usepackage[onehalfspacing]{setspace} % полуторный интервал
+\usepackage{indentfirst} %красная строка в первом абзаце
+
+\usepackage[left=3.5cm,top=2cm,bottom=2cm,right=2.0cm]{geometry} %настройка полей
+
+\usepackage{amsmath,amssymb,xcolor,hyperref,graphics, tikz, pgfplots, qtree,csquotes} %Пакеты для формул, изображений, деревьев и т.д.
+\usetikzlibrary{positioning,trees,arrows, calc} %Библиотеки для tikz
+\usepackage{sgamevar}
+% Пакет для настройки оглавления
+\usepackage{tocloft} 
+
+
+
+\renewcommand{\cftsecfont}{\hspace{0pt}} 
+% Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}}
+% Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}  
+%Номера страниц не жирные
+\setcounter{tocdepth}{3}  
+%Глубина оглавления, до subsubsection
+
+
+\addto \captionsrussian{\renewcommand{\refname}{\center{Список использованной литературы}}} %Список использованной литературы
+\addto \captionsrussian {\renewcommand{\contentsname}{Оглавление}} %Оглавление
+
+\makeatletter \renewcommand{\@biblabel}[1]{#1.} \makeatother   % убрать скобки в нумерации библиографии
+\makeatletter \renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.~} \makeatother  %добавить точки после номера главы
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Настройки библиографии
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[
+%style=gost-authoryear-min,
+%style=gost-authoryear,
+%style=gost-numeric, 
+%style=gost-footnote-min,
+style=authoryear,
+%style=verbose,
+%style=authoryear-icomp,
+%style=philosophy-modern,
+%style=mla,
+%style=apa,
+%style=bwl-FU,
+%style=nature,
+%style=chem-acs,
+%style=ieee,
+firstinits=true,
+isbn=false,
+url=false,
+%doi=false,
+dashed = false,
+autolang=other,
+%natbib=true,
+defernumbers=true
+]{biblatex}
+
+
+
+\DeclareSourcemap{
+\maps[datatype=bibtex]{
+\map{
+\step[fieldsource=langid, match=russian, final]
+\step[fieldset=presort, fieldvalue={a}]
+}
+\map{
+\step[fieldsource=langid, notmatch=russian, final]
+\step[fieldset=presort, fieldvalue={z}]
+}
+}
+} %%% Сначала русские источники, потом - иностранные
+
+
+%\DeclareSourcemap{ %language-> langid
+%  \maps{
+%    \map{
+%      \step[fieldsource=language, fieldset=langid, origfieldval]
+%      \step[fieldset=language, null]  }
+%    \map{
+%      \step[fieldsource=language, fieldset=keywords, origfieldval, final]
+%      \step[fieldset=language, null]  }   
+%      }}
+      
+    
+\AtEveryBibitem{%
+\clearfield{month}%
+\ifentrytype{book}{%
+    \clearfield{url}%
+    \clearfield{urldate}%
+    \clearfield{review}%
+    \clearfield{series}%
+    \clearfield{pages}}}
+
+%%%%Настройки ГОСТА
+\renewcommand{\newblockpunct}{%  
+\addperiod\space\bibsentence}%убирает —%block punct.,\bibsentence is for vol,etc.
+
+\DefineBibliographyStrings{english}{%
+  pages = {P\adddot},}
+\DefineBibliographyStrings{english}{%
+  number = {No\adddot},}
+\DefineBibliographyStrings{russian}{%
+  pages = {c\adddot},}  
+
+%\DeclareLanguageMapping{english}{english-apa} % убирает yearsmonthday в apa
+%\DeclareLanguageMapping{russian}{russian-apa}
+
+%убирает пробел перед : и ;
+%\renewcommand*{\addcolondelim}{\addcolon\space}
+%\renewcommand*{\addsemicolondelim}{\addsemicolon\space}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+

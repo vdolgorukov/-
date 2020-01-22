@@ -1,0 +1,42 @@
+\begin{figure}[h]
+\tikzstyle{h}=[circle,draw,inner sep=1.0]
+\tikzstyle{s}=[circle,draw,inner sep=1.0, fill=black]
+\begin{center}
+\begin{tikzpicture}
+\tikzset{grow'=right}
+\node(0)[h, label=right:\tiny{$Nature$}]{}[level distance=1.2cm, sibling distance=4.5cm]
+     child[]{node(1)[s, label=left:\tiny{$w_1$}, label=right:\tiny{ $S$}, label=above:\tiny{$\rho_1$}]{}[level distance=2.0cm, sibling distance=1.8cm]
+          child[]{node(3)[s, label=below:\tiny{$t_1$}, label=above:\tiny{$H$}]{}
+               child[]{node(7)[s,label=right:\footnotesize{$(1;1)$}]{}
+                       edge from parent node[above]{\footnotesize{$a_1$}} }       
+                  edge from parent node[above]{\footnotesize{$\varphi_1$}} 
+                   }    
+          child[]{node(4)[s, label=above:\tiny{$t'_1$}, label=right:\tiny{   $H$}]{}[level distance=2.0cm, sibling distance=1.5cm]
+               child[]{node(8)[s,label=right:\footnotesize{$(1;1)$}]{}
+                       edge from parent node[above]{\footnotesize{$a_1$}}
+                       }
+                child[]{node(9)[s,label=right:\footnotesize{$(-1;-1)$}]{}
+                       edge from parent node[below]{\footnotesize{$a_2$}}
+                       }     
+                  edge from parent node[below]{\footnotesize{$\varphi'$}}
+                  }     
+             }
+    child[]{node(2)[s,label=left:\tiny{ $w_2$}, label=right:\tiny{ $S$}, label=below:\tiny{$\rho_2$}]{}[level distance=2.0cm, sibling distance=1.8cm]
+          child[]{node(5)[s, label=below:\tiny{$t'_2$}, , label=right:\tiny{   $H$}]{}[level distance=2.0cm, sibling distance=1.5cm]
+               child[]{node(11)[s,label=right:\footnotesize{$(-1;-1)$}]{}
+                      edge from parent node[above]{\footnotesize{$a_1$}}
+                       }
+                child[]{node(12)[s,label=right:\footnotesize{$(-1;-1)$}]{}
+                      edge from parent node[below]{\footnotesize{$a_2$}} }   
+                 edge from parent node[above]{\footnotesize{$\varphi'$}} }    
+          child[]{node(6)[s, label=above:\tiny{$t_2$}, label=below:\tiny{$H$}]{}
+             child[]{node(10)[s,label=right:\footnotesize{$(1;1)$}]{} edge from parent node[below]{\footnotesize{$a_2$}}
+                     }       
+                edge from parent node[below]{\footnotesize{$\varphi_2$}}  }   
+            };
+%\draw[dashed](1)--(2);
+\draw[dashed, rounded corners=1]($(4)+(-.11,.11)$)rectangle($(5)+(.11,-.11)$);
+\end{tikzpicture}
+\caption{Схема}
+\end{center}
+\end{figure}

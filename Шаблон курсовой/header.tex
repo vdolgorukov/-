@@ -50,10 +50,10 @@
 
 \usepackage[
 %style=gost-authoryear-min,
-%style=gost-authoryear,
+style=gost-authoryear,
 %style=gost-numeric, 
 %style=gost-footnote-min,
-style=authoryear,
+%style=authoryear,
 %style=verbose,
 %style=authoryear-icomp,
 %style=philosophy-modern,
@@ -73,7 +73,9 @@ autolang=other,
 defernumbers=true
 ]{biblatex}
 
-
+%убирает пробел перед : и ;
+\renewcommand*{\addcolondelim}{\addcolon\space}
+\renewcommand*{\addsemicolondelim}{\addsemicolon\space}
 
 \DeclareSourcemap{
 \maps[datatype=bibtex]{
@@ -99,7 +101,14 @@ defernumbers=true
 %      \step[fieldset=language, null]  }   
 %      }}
       
-    
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldset=langid, fieldvalue={english}]
+    }
+  }
+}
+
 \AtEveryBibitem{%
 \clearfield{month}%
 \ifentrytype{book}{%
